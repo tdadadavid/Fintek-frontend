@@ -14,7 +14,7 @@ export interface UserType {
 }
 
 const withAuth = <T extends Object>(Component: React.ComponentType<T>) => {
-	const wrapper = (props: T) => {
+	const Wrapper = (props: T) => {
 		const [checking, SetChecking] = useState(true);
 		const { axiosHandler } = useAxiosHandler();
 		const { logout } = useLogout();
@@ -61,7 +61,7 @@ const withAuth = <T extends Object>(Component: React.ComponentType<T>) => {
 		return <Component {...props} />;
 	};
 
-	return wrapper;
+	return Wrapper;
 };
 
 export default withAuth;
