@@ -1,0 +1,1 @@
+export const USER_TOKEN_KEY='fingreat_user_token';
