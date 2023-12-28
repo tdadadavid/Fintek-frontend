@@ -21,13 +21,13 @@ enum ModalState {
 
 const Accounts = () => {
 	const [accounts, SetAccounts] = useState<AccountType[]>([]);
-	const [loading, SetLoading] = useState(true);
+	const [loading, setLoading] = useState(true);
 	const { axiosHandler } = useAxiosHandler();
 	const { getModalContent, closeModal, showModal } = useModal();
 	const [modalState, SetModalState] = useState(ModalState.AddAccount);
 
 	const getAccounts = async () => {
-		SetLoading(true);
+		setLoading(true);
 
 		const response = await axiosHandler<AccountType[]>({
 			method: "GET",
@@ -35,12 +35,11 @@ const Accounts = () => {
 			isAuthorized: true,
 		});
 
-		SetLoading(false);
+		setLoading(false);
 
 		if (response.data) {
-
 			//@ts-ignore
-			console.log(response.data.data)
+			console.log(response.data.data);
 			//@ts-ignore
 			SetAccounts(response.data.data);
 		}

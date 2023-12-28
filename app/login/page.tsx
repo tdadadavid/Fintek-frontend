@@ -7,8 +7,8 @@ import { authUrl } from "@/utils/network";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
-import withoutAuth from "../components/hocs/withoutAuth";
 import useAxiosHandler from "@/utils/axiosHandler";
+import WithoutAuth from "../components/hocs/withoutAuth";
 
 interface LoginType {
 	token: string;
@@ -21,7 +21,7 @@ interface LoginType {
 }
 
 const Login = () => {
-	const [loading, SetLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const Router = useRouter();
 	const { axiosHandler } = useAxiosHandler();
 
@@ -30,7 +30,7 @@ const Login = () => {
 		formRef: React.RefObject<HTMLFormElement>
 	) => {
 		e.preventDefault();
-		SetLoading(true);
+		setLoading(true);
 
 		const args = {
 			email: formRef.current?.email.value,
@@ -45,7 +45,7 @@ const Login = () => {
 			hanldeError: true,
 		});
 
-		SetLoading(false);
+		setLoading(false);
 
 		if (response.data) {
 			localStorage.setItem(USER_TOKEN_KEY, response.data.token);
@@ -67,4 +67,4 @@ const Login = () => {
 	);
 };
 
-export default withoutAuth(Login);
+export default WithoutAuth(Login);

@@ -2,17 +2,18 @@ import { USER_TOKEN_KEY } from "@/utils/constant";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const withoutAuth = <T extends Object>(Component: React.ComponentType<T>) => {
+const WithoutAuth = <T extends object>(Component: React.ComponentType<T>) => {
+
 	const Wrapper = (props: T) => {
-		const [checking, SetChecking] = useState(true);
 		const Router = useRouter();
+		const [checking, setChecking] = useState(true);
 
 		useEffect(() => {
 			const userToken = localStorage.getItem(USER_TOKEN_KEY);
 			if (userToken) {
 				Router.push("/");
 			} else {
-				SetChecking(false);
+				setChecking(false);
 			}
 		}, []);
 
@@ -26,4 +27,4 @@ const withoutAuth = <T extends Object>(Component: React.ComponentType<T>) => {
 	return Wrapper;
 };
 
-export default withoutAuth;
+export default WithoutAuth;

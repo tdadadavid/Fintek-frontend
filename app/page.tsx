@@ -4,10 +4,10 @@ import { useEffect, useContext } from "react";
 import { MdAccountBalance } from "react-icons/md";
 import ProcessCard from "./components/ProcessCard";
 import MainLayout from "./components/MainLayout";
-import withAuth from "./components/hocs/withAuth";
 import { useModal } from "./components/hooks/useModal";
 import UpdateUser from "./components/UpdateUser";
 import { store } from "./components/StoreProvider";
+import WithAuth from "./components/hocs/withAuth";
 
 const Home = () => {
 	const { getModalContent, closeModal, showModal } = useModal(false);
@@ -44,4 +44,4 @@ const Home = () => {
 	);
 };
 
-export default withAuth(Home);
+export default WithAuth(Home);

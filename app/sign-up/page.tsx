@@ -2,16 +2,14 @@
 
 import Auth from "../components/Auth";
 import { authUrl } from "@/utils/network";
-import axios, { AxiosError } from "axios";
 import React, { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { errorHanlder } from "@/utils/errorHandler";
-import withoutAuth from "../components/hocs/withoutAuth";
 import useAxiosHandler from "@/utils/axiosHandler";
+import WithoutAuth from "../components/hocs/withoutAuth";
 
 const Register = () => {
-	const [loading, SetLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const Router = useRouter();
 	const { axiosHandler } = useAxiosHandler();
 
@@ -20,7 +18,7 @@ const Register = () => {
 		formRef: React.RefObject<HTMLFormElement>
 	) => {
 		e.preventDefault();
-		SetLoading(true);
+		setLoading(true);
 
 		const arg = {
 			email: formRef.current?.email.value,
@@ -34,7 +32,7 @@ const Register = () => {
 			isAuthorized: false,
 		});
 
-		SetLoading(false);
+		setLoading(false);
 
 		if (response.data) {
 			toast("User created succesfully", {
@@ -59,4 +57,4 @@ const Register = () => {
 	);
 };
 
-export default withoutAuth(Register);
+export default WithoutAuth(Register);

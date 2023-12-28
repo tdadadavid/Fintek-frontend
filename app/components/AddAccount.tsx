@@ -2,22 +2,22 @@ import useAxiosHandler from "@/utils/axiosHandler";
 import { FormEvent, useContext, useRef, useState } from "react";
 import { ActionTypes, store } from "./StoreProvider";
 import { accountsUrl } from "@/utils/network";
-import { UserType } from "./hocs/withAuth";
 import { toast } from "react-toastify";
+import { UserType } from "./hocs/withAuth";
 
 interface AddAccountType {
 	completeOperation: () => void;
 }
 
 const AddAccount = ({ completeOperation }: AddAccountType) => {
-	const [loading, SetLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const { axiosHandler } = useAxiosHandler();
 	const { dispatch } = useContext(store);
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		SetLoading(true);
+		setLoading(true);
 
 		const addAccountArgs = {
 			currency: formRef.current?.currency.value,
@@ -30,7 +30,7 @@ const AddAccount = ({ completeOperation }: AddAccountType) => {
 			data: addAccountArgs,
 		});
 
-		SetLoading(false);
+		setLoading(false);
 
 		if (response.data) {
 			toast("Account added successfully", { type: "success" });

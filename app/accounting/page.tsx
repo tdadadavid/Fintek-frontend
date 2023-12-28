@@ -5,7 +5,7 @@ import MainLayout from "../components/MainLayout";
 import ContentHeading from "../components/ContentHeading";
 import Transaction from "../components/Transaction";
 import Accounts from "../components/Accounts";
-import withAuth from "../components/hocs/withAuth";
+import WithAuth from "../components/hocs/withAuth";
 
 const AccountingKeys = { accounts: "accounts", transaction: "transaction" };
 
@@ -30,8 +30,6 @@ const Accounting = () => {
 		</MainLayout>
 	);
 };
-
-
 
 interface SideSectionType {
 	activeTab: string;
@@ -63,4 +61,4 @@ const SideSection = (props: SideSectionType) => {
 	);
 };
 
-export default withAuth(Accounting);
+export default WithAuth(Accounting);

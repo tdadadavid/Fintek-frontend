@@ -4,8 +4,8 @@ import { ActionTypes, store } from "./StoreProvider";
 import { transferUrl } from "@/utils/network";
 import { toast } from "react-toastify";
 import { read } from "fs";
-import { UserType } from "./hocs/withAuth";
 import { AccountType } from "./Accounts";
+import { UserType } from "./hocs/withAuth";
 
 interface SendMoneyType {
 	completeOperation: () => void;
@@ -13,14 +13,14 @@ interface SendMoneyType {
 }
 
 const SendMoney = ({ completeOperation, accounts }: SendMoneyType) => {
-	const [loading, SetLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const { axiosHandler } = useAxiosHandler();
 	const { dispatch } = useContext(store);
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		SetLoading(true);
+		setLoading(true);
 
 		const transferMoneyArgs = {
 			from_account_id: +formRef.current?.from_account_id.value,
@@ -35,7 +35,7 @@ const SendMoney = ({ completeOperation, accounts }: SendMoneyType) => {
 			isAuthorized: true,
 		});
 
-		SetLoading(false);
+		setLoading(false);
 
 		if (response.data) {
 			toast("Transaction successful", { type: "success" });

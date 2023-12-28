@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { UserType } from "./hocs/withAuth";
 
 const UpdateUser = ({ closeModal }: { closeModal: () => void }) => {
-	const [loading, SetLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const { dispatch } = useContext(store);
@@ -14,7 +14,7 @@ const UpdateUser = ({ closeModal }: { closeModal: () => void }) => {
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		SetLoading(true);
+		setLoading(true);
 
 		let updateUserReqArgs = {
 			username: formRef.current?.username?.value,
@@ -27,7 +27,7 @@ const UpdateUser = ({ closeModal }: { closeModal: () => void }) => {
 			data: updateUserReqArgs,
 		});
 
-		SetLoading(false);
+		setLoading(false);
 
 		if (response.data) {
 			toast("Updated username successfully", { type: "success" });

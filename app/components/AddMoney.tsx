@@ -3,12 +3,12 @@ import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { ActionTypes, store } from "./StoreProvider";
 import { accountsUrl, transferUrl } from "@/utils/network";
 import { toast } from "react-toastify";
-import { UserType } from "./hocs/withAuth";
 import { AccountType } from "./Accounts";
 import usePaystack, {
 	Currency,
 	FinTekPaystackProps,
 } from "./hooks/usePaystack";
+import { UserType } from "./hocs/withAuth";
 
 interface AddMoneyType {
 	completeOperation: () => void;
@@ -16,7 +16,7 @@ interface AddMoneyType {
 }
 
 const AddMoney = ({ completeOperation, accounts }: AddMoneyType) => {
-	const [loading, SetLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const { axiosHandler } = useAxiosHandler();
 	const formRef = useRef<HTMLFormElement>(null);
 	const [data, SetData] = useState<FinTekPaystackProps>({
@@ -43,7 +43,7 @@ const AddMoney = ({ completeOperation, accounts }: AddMoneyType) => {
 			isAuthorized: true,
 		});
 
-		SetLoading(false);
+		setLoading(false);
 
 		if (response.data) {
 			formRef.current?.reset();
@@ -60,7 +60,7 @@ const AddMoney = ({ completeOperation, accounts }: AddMoneyType) => {
 			};
 
 			const onClose: any = () => {
-				SetLoading(false);
+				setLoading(false);
 			};
 			initiateTransaction(callback, onClose);
 		}
@@ -68,7 +68,7 @@ const AddMoney = ({ completeOperation, accounts }: AddMoneyType) => {
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		SetLoading(true);
+		setLoading(true);
 
 		const amount = parseFloat(formRef.current?.amount.value);
 		const currency = accounts.find(

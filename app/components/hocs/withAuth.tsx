@@ -13,9 +13,9 @@ export interface UserType {
 	username?: string;
 }
 
-const withAuth = <T extends Object>(Component: React.ComponentType<T>) => {
+const WithAuth = <T extends object>(Component: React.ComponentType<T>) => {
 	const Wrapper = (props: T) => {
-		const [checking, SetChecking] = useState(true);
+		const [checking, setChecking] = useState(true);
 		const { axiosHandler } = useAxiosHandler();
 		const { logout } = useLogout();
 		const {
@@ -38,12 +38,12 @@ const withAuth = <T extends Object>(Component: React.ComponentType<T>) => {
 							type: ActionTypes.UpdateUser,
 							payload: response.data,
 						});
-						SetChecking(false);
+						setChecking(false);
 					} else {
 						logout();
 					}
 				} else {
-					SetChecking(false);
+					setChecking(false);
 				}
 			} else {
 				logout();
@@ -64,4 +64,4 @@ const withAuth = <T extends Object>(Component: React.ComponentType<T>) => {
 	return Wrapper;
 };
 
-export default withAuth;
+export default WithAuth;
