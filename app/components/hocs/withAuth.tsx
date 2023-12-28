@@ -14,6 +14,7 @@ export interface UserType {
 }
 
 const WithAuth = <T extends object>(Component: React.ComponentType<T>) => {
+
 	const Wrapper = (props: T) => {
 		const [checking, setChecking] = useState(true);
 		const { axiosHandler } = useAxiosHandler();
