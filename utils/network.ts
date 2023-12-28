@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export const authUrl = {
 	register: `${BASE_URL}/auth/sign-up`,
@@ -14,7 +14,6 @@ export const accountsUrl = {
 	getAccounts: `${BASE_URL}/accounts`,
 	addAccounts: `${BASE_URL}/accounts`,
 	makeDeposit: `${BASE_URL}/accounts/deposit`,
-
 };
 
 export const transferUrl = {
