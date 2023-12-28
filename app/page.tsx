@@ -14,6 +14,8 @@ const Home = () => {
 	const {
 		state: { activeUser },
 	} = useContext(store);
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		//@ts-ignore
 		if (!activeUser?.user.username) {

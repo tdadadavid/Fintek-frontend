@@ -52,6 +52,7 @@ const AddMoney = ({ completeOperation, accounts }: AddMoneyType) => {
 		}
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		if (data.amount > 0) {
 			const callback: any = (resp: any) => {
